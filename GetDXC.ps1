@@ -7,7 +7,7 @@ if ($args.count -lt 1)
 New-Item -ItemType Directory -Force -Path $SaveFolder
 
 $JSONURL = "https://api.github.com/repos/microsoft/DirectXShaderCompiler/releases/latest"
-$JSON = Invoke-WebRequest -Uri $JSONURL
+$JSON = Invoke-WebRequest -UseBasicParsing -Uri $JSONURL
 $ParsedJSON = ConvertFrom-Json -InputObject $JSON
 $Assets = Select-Object -InputObject $ParsedJSON -ExpandProperty assets
 Foreach ($Asset IN $Assets)
